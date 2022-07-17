@@ -1,7 +1,15 @@
-import React from 'react'
+import axios from "axios";
+import { useQuery } from "react-query";
 
-export const useNewsData = () => {
-  return (
-    <div>useNewsData</div>
-  )
+const getNews =()=>
+{
+    return axios.get("https://hn.algolia.com/api/v1/search?query=test")
+    .then((res)=>res.data)
 }
+
+const useNewsData =()=>
+{
+    return useQuery("hacker-news", getNews)
+}
+
+export default useNewsData;
